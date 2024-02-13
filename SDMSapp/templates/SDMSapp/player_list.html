@@ -1,0 +1,17 @@
+<!-- player_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player List</title>
+</head>
+<body>
+    <h1>Player List</h1>
+    <ul>
+        {% for player in players %}
+            <li>{{ player.stud_name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
