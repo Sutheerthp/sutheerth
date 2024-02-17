@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .forms import PlayerForm, Player
+from .forms import PlayerForm, Player, DepartmentForm, Sportform
 
 def user_login(request):
     if request.method == 'POST':

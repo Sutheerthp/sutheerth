@@ -1,40 +1,22 @@
 from django.db import models
+class Department(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Sport(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Player(models.Model):
     sl_no = models.AutoField(primary_key=True)
     stud_name = models.CharField(max_length=100)
     stud_id = models.CharField(max_length=20, unique=True)  # Assuming stud_id is a unique identifier
-    SPORT_DETAILS = [('sport','sport'),
-                     ('kabaddi','kabaddi'),
-                     ('basketball','basketball'),
-                     ('handball','handball'), 
-                     ('cricket','cricket'),
-                     ('football','football'),
-                     ('ball_batminton','ball_batminton'),
-                     ('shuttle_batminton','shuttle_batminton'),
-                     ('wrestling','wrestling'),
-                     ('judo','judo'),
-                     ('taekwondo','taekwondo'),
-                     ('karate','karate'),
-                     ('Kho-kho','kho-kho')
-    ]
-    sport = models.CharField(max_length=50, choices=SPORT_DETAILS, default='Active')
-    DEPT_DETAILS = (("computer_science", "Computer Science"),
-                    ("physics", "Physics"),
-                    ("mathematics", "Mathematics"),
-                    ("statistics", "Statistics"),
-                    ("malayalam", "Malayalam"),
-                    ("history", "History"),
-                    ("zoology", "Zoology"),
-                    ("plantsciece", "Plantsciece"),
-                    ("polymer_chemistry", "Polymer Chemistry"),
-                    ("economics", "Economics"),
-                    ("commerce", "Commerce"),
-                    ("english", "English")
-)
-
-
-    department = models.CharField(max_length=100, choices=DEPT_DETAILS, default=True)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     dob = models.DateField()
     year = models.IntegerField()
     place = models.CharField(max_length=100)
