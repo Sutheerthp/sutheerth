@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from .forms import PlayerForm, Player, DepartmentForm, Sportform
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -27,6 +29,7 @@ def user_signup(request):
         form = UserCreationForm()
     return render(request, 'SDMSapp/signup.html', {'form': form})
 
+@login_required
 def user_home(request):
     return render(request, 'SDMSapp/home.html')
 

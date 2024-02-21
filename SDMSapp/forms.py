@@ -8,7 +8,7 @@ class DepartmentForm(forms.ModelForm):
 
 class Sportform(forms.ModelForm):
     class Meta:
-        model = Department
+        model = Sport
         fields = '__all__'
 
 
