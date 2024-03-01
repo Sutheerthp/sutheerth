@@ -11,13 +11,13 @@
             padding: 0;
         }
         header {
-            background-color: #333;
+            background-color: #4CAF50;
             color: #fff;
             padding: 20px 0;
             text-align: center;
         }
         nav {
-            background-color: #444;
+            background-color: #000000;
             padding: 10px 0;
             text-align: center;
         }
@@ -79,10 +79,11 @@
         <h2 id="player">Player Management</h2>
         <div class="module">
             <h3>Player Module</h3>
-            <p>Manage player profiles, statistics, and performance.</p>
+            <p>Manage player profiles, statistics, and performance.<br></p>
             <div class="module-actions">
-                <a href="{% url "playerlist" %}">View Players</a>
-                <a href="{% url "addplayer" %}">add player</a>
+                {% comment %} <a href="{% url "playerlist" %}">View Players</a>
+                <a href="{% url "addplayer" %}">add player</a> {% endcomment %}
+                <a href="#">edit player</a>
             </a>
             </div>
         </div>
@@ -94,6 +95,7 @@
             <div class="module-actions">
                 <a href="#">View Teams</a>
                 <a href="#">Create Team</a>
+                <a href="#">edit Team</a>
             </div>
         </div>
         
