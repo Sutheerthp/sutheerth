@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Details Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #000000;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+        h2 {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .module {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .module h3 {
+            margin-top: 0;
+        }
+        .module p {
+            margin-bottom: 0;
+        }
+        .module-actions {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .module-actions a {
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin: 0 5px;
+        }
+        .module-actions a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sports Details Management System</h1>
+    </header>
+    <nav>
+        <a href="#player">Player Management</a>
+        <a href="#team">Team Management</a>
+        <a href="#attendance">Attendance</a>
+        <a href="#gallery">Picture Gallery</a>
+        <a href="#certificate">Certificate Portal</a>
+        <a href="{% url "signup" %}">sign up</a>
+    </nav>
+    <div class="container">
+        <h2 id="player">Player Management</h2>
+        <div class="module">
+            <h3>Player Module</h3>
+            <p>Manage player profiles, statistics, and performance.<br></p>
+            <div class="module-actions">
+                <a href="#">View student</a>
+                <a href="{% url "add_student" %}">add student</a>
+                <a href="{% url "edit_student" %}">edit student</a>
+            </a>
+            </div>
+        </div>
+        
+        <h2 id="team">Team Management</h2>
+        <div class="module">
+            <h3>Team Module</h3>
+            <p>Manage teams, assign players, and track performance.</p>
+            <div class="module-actions">
+                <a href="#">View Teams</a>
+                <a href="#">Create Team</a>
+                <a href="#">edit Team</a>
+            </div>
+        </div>
+        
+        <h2 id="attendance">Attendance</h2>
+        <div class="module">
+            <h3>Attendance Module</h3>
+            <p>Track player attendance and manage leave requests.</p>
+            <div class="module-actions">
+                <a href="#">View Attendance</a>
+                <a href="#">Manage Leave</a>
+            </div>
+        </div>
+        
+        <h2 id="gallery">Picture Gallery</h2>
+        <div class="module">
+            <h3>Gallery Module</h3>
+            <p>Explore pictures of team members and events.</p>
+            <div class="module-actions">
+                <a href="#">View Gallery</a>
+                <a href="#">Upload Picture</a>
+            </div>
+        </div>
+        
+        <h2 id="certificate">Certificate Portal</h2>
+        <div class="module">
+            <h3>Certificate Module</h3>
+            <p>Download certificates for achievements and awards.</p>
+            <div class="module-actions">
+                <a href="#">View Certificates</a>
+                <a href="#">Download Certificate</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

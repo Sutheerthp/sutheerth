@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+</head>
+<body>
+    <h1>Edit Student</h1>
+    <form method="POST" action="{% url 'edit_student' %}">
+        {% csrf_token %}
+        <label for="selected_student">Select Student:</label>
+        <select id="selected_student" name="selected_student">
+            {% for student in students %}
+                <option value="{{ student.id }}">{{ student.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Edit</button>
+    </form>
+</body>
+</html>
