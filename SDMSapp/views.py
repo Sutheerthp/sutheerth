@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from SDMSapp.models import Student
-
+from .forms import StudentForm
+from .forms import SearchForm
 
 
 #from .forms import PlayerForm, Player, DepartmentForm, Sportform
@@ -45,65 +46,38 @@ from SDMSapp.models import Student, Programme  # Import your models
 
 def add_student(request):
     if request.method == 'POST':
-        # Extract student data from the request
-        name = request.POST.get('name')
-        year_of_admission = request.POST.get('year_of_admission')
-        admission_no = request.POST.get('admission_no')
-        programme_id = request.POST.get('programme_id')
-        uty_reg_no = request.POST.get('uty_reg_no')
-        place = request.POST.get('place')
-        city = request.POST.get('city')
-        district = request.POST.get('district')
-        pincode = request.POST.get('pincode')
-
-        # Create a new Programme instance or get an existing one based on form data
-        programme_instance = Programme.objects.get(id=programme_id)
-
-        # Create a new Student instance
-        new_student = Student(
-            name=name,
-            year_of_admission=year_of_admission,
-            admission_no=admission_no,
-            programme_id=programme_instance,
-            uty_reg_no=uty_reg_no,
-            place=place,
-            city=city,
-            district=district,
-            pincode=pincode
-        )
-
-        # Save the new student instance
-        new_student.save()
-
-        return redirect(reverse('success_page'))  # Redirect to the success page
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('student_list')  # Redirect to the list of students after adding
     else:
-        # Render the form template (assuming you have a template for the form)
-        return render(request, 'SDMSapp/home.html')
-
+        form = StudentForm()
+    return render(request, 'SDMSapp/addstudent.html', {'form': form})
 def success_page(request):
     return render(request, 'SDMSapp/success_page.html')
 
-def edit_student(request):
+def edit_student(request, uty_reg_no):
+    student = get_object_or_404(Student, uty_reg_no=uty_reg_no)
     if request.method == 'POST':
-        student_id = request.POST.get('selected_student')
-        student = get_object_or_404(Student, student_id=student_id)
-
-        # Update the student instance with new data
-        student.name = request.POST.get('name')
-        student.year_of_admission = request.POST.get('year_of_admission')
-        student.admission_no = request.POST.get('admission_no')
-        student.programme_id = request.POST.get('programme_id')
-        student.uty_reg_no = request.POST.get('uty_reg_no')
-        student.place = request.POST.get('place')
-        student.city = request.POST.get('city')
-        student.district = request.POST.get('district')
-        student.pincode = request.POST.get('pincode')
-
-        # Save the updated student instance
-        student.save()
-
-        return redirect('student_list')  # Redirect to the student list page after editing
+        form = StudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+            return redirect('student_list')  # Redirect to the student list page after editing
     else:
-        students = Student.objects.all()
-        return render(request, 'SDMSapp/edit_student.html', {'students': students})
+        form = StudentForm(instance=student)
+    return render(request, 'SDMSapp/edit_student.html', {'student': student})
 
+def view_student(request):
+    # Query all student records
+    students = Student.objects.all()
+    return render(request, 'SDMSapp/view_student.html', {'students': students})
+
+def search_student(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            uty_reg_no = form.cleaned_data['uty_reg_no']
+            return redirect('edit_student', uty_reg_no=uty_reg_no)
+    else:
+        form = SearchForm()
+    return render(request, 'search_student.html', {'form': form})

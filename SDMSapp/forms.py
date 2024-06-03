@@ -1,6 +1,13 @@
+# forms.py
 from django import forms
-from .models import Department, Programme, Stud_item, Student, Item
+from .models import Student
 
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = '__all__'
+class SearchForm(forms.Form):
+    uty_reg_no = forms.CharField(label='Enter Registration Number', max_length=50)
 
 
 
